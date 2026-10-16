@@ -1,0 +1,16 @@
+import pandas as pd
+
+df = pd.read_csv("delivery_point_distance.csv")
+print(df)
+
+x1, y1 = 3, 3
+
+df["Distance"] = ((df["X"] - x1)**2 + (df["Y"] - y1)**2)**0.5
+
+print(df.round(2))
+
+nearest = df.loc[df["Distance"].idxmin()]
+
+print("New Location: (3, 3)")
+print("Nearest Point:", nearest["Point"])
+print("Distance:", round(nearest["Distance"], 2))
